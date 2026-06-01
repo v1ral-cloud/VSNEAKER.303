@@ -1,0 +1,46 @@
+{
+  "name": "d4k-ecommerce-frontend",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "D4K E-commerce Fashion Store - Y2K Style",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "generate-sitemap": "node scripts/generate-sitemap.js",
+    "prebuild": "npm run generate-sitemap"
+  },
+  "dependencies": {
+    "@headlessui/react": "^2.2.9",
+    "@react-oauth/google": "^0.13.5",
+    "@stomp/stompjs": "^7.3.0",
+    "axios": "^1.6.2",
+    "clsx": "^2.0.0",
+    "gsap": "^3.14.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-helmet-async": "^2.0.5",
+    "react-hook-form": "^7.68.0",
+    "react-hot-toast": "^2.4.1",
+    "react-icons": "^4.12.0",
+    "react-router-dom": "^6.20.0",
+    "recharts": "^3.5.1",
+    "sockjs-client": "^1.6.1",
+    "swiper": "^11.0.5",
+    "zustand": "^4.4.7"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6",
+    "vite": "^5.0.8"
+  }
+}

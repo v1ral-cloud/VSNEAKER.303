@@ -1,0 +1,259 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   VSNEAKERS THEME - Premium Sneaker Store
+   White base, orange accent, modern & clean
+   ============================================ */
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+  
+  body {
+    @apply bg-white text-dark-950 font-sans;
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  /* ===== BUTTONS ===== */
+
+  /* Primary Button - Black */
+  .btn-street {
+    @apply px-8 py-3 bg-dark-950 text-white font-bold uppercase tracking-wide;
+    @apply border-2 border-dark-950 transition-all duration-300;
+    @apply hover:bg-sneaker-orange hover:border-sneaker-orange hover:scale-[1.02];
+    @apply relative overflow-hidden;
+  }
+
+  /* Accent Button - Orange */
+  .btn-sneaker {
+    @apply px-8 py-3 bg-sneaker-orange text-white font-bold uppercase tracking-wide;
+    @apply border-2 border-sneaker-orange transition-all duration-300;
+    @apply hover:bg-sneaker-dark hover:border-sneaker-dark hover:scale-[1.02];
+    @apply shadow-orange-soft;
+  }
+
+  /* Outline Button */
+  .btn-outline {
+    @apply px-8 py-3 bg-transparent text-dark-950 font-bold uppercase tracking-wide;
+    @apply border-2 border-dark-950 transition-all duration-300;
+    @apply hover:bg-dark-950 hover:text-white hover:scale-[1.02];
+  }
+
+  /* Old alias */
+  .btn-street-accent {
+    @apply btn-sneaker;
+  }
+
+  /* ===== CARDS ===== */
+
+  /* Product Card - Clean White */
+  .product-card-street {
+    @apply bg-white border border-light-300 overflow-hidden;
+    @apply transition-all duration-300;
+    @apply hover:shadow-card-hover hover:border-light-300;
+    @apply hover:scale-[1.02];
+    position: relative;
+  }
+
+  /* Harsh Shadow Card (used in some sections) */
+  .card-harsh {
+    @apply bg-white border-2 border-dark-950;
+    box-shadow: 6px 6px 0px rgba(10, 10, 10, 0.9);
+    transition: all 0.3s ease;
+  }
+
+  .card-harsh:hover {
+    box-shadow: 10px 10px 0px rgba(10, 10, 10, 0.9);
+    transform: translate(-2px, -2px);
+  }
+
+  /* ===== LAYOUT ===== */
+
+  /* Container */
+  .container-street {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* ===== SECTION STYLES ===== */
+
+  /* Section on white background */
+  .section-white {
+    @apply py-20 md:py-28 bg-white;
+  }
+
+  /* Section on light gray background */
+  .section-light {
+    @apply py-20 md:py-28 bg-light-200;
+  }
+
+  /* ===== TAGS & BADGES ===== */
+
+  /* Sneaker Tag / Pill badge */
+  .sneaker-tag {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider;
+    @apply bg-sneaker-light text-sneaker-orange border border-sneaker-orange/30;
+  }
+
+  /* ===== TEXT ===== */
+
+  /* Section Label */
+  .section-label {
+    @apply text-sneaker-orange font-bold text-sm uppercase tracking-[0.3em] mb-3 block;
+  }
+
+  /* Section Title */
+  .section-title {
+    @apply text-4xl md:text-5xl lg:text-6xl font-display font-black uppercase;
+    @apply tracking-tight text-dark-950 leading-[1];
+  }
+
+  /* ===== ANIMATIONS ===== */
+
+  /* Glitch Effect */
+  .glitch-street {
+    position: relative;
+    display: inline-block;
+  }
+
+  .glitch-street:hover {
+    animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both;
+  }
+
+  /* Glass Effect */
+  .glass-street {
+    @apply backdrop-blur-sm bg-white/80;
+    @apply border border-light-300;
+  }
+
+  /* Grid Lines Background (subtle dots for white bg) */
+  .grid-lines {
+    background-image: radial-gradient(circle, #e0e0e0 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  /* ===== SKELETONS ===== */
+
+  .skeleton-street {
+    @apply relative overflow-hidden bg-light-200;
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+  }
+
+  .skeleton-street-dark {
+    @apply relative overflow-hidden bg-light-300;
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+  }
+
+  /* ===== DECORATIVE ===== */
+
+  /* Orange accent line */
+  .accent-line {
+    @apply h-1 w-16 bg-sneaker-orange;
+  }
+
+  /* Strikethrough */
+  .strikethrough-red {
+    position: relative;
+  }
+
+  .strikethrough-red::after {
+    content: '';
+    @apply absolute left-0 right-0 top-1/2 h-0.5 bg-sneaker-orange;
+    transform: rotate(-5deg);
+  }
+}
+
+@layer utilities {
+  /* Text Shadow Utilities */
+  .text-shadow-harsh {
+    text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.9);
+  }
+
+  .text-shadow-soft {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .text-shadow-orange {
+    text-shadow: 0 0 12px rgba(255, 107, 0, 0.6),
+                 0 0 24px rgba(255, 107, 0, 0.3);
+  }
+
+  /* Filter Utilities */
+  .filter-grayscale-80 {
+    filter: grayscale(80%);
+    transition: filter 0.3s ease;
+  }
+
+  .filter-grayscale-80:hover {
+    filter: grayscale(0%);
+  }
+}
+
+/* ===== CUSTOM ANIMATIONS ===== */
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20%       { transform: translate(-2px, 2px); }
+  40%       { transform: translate(-2px, -2px); }
+  60%       { transform: translate(2px, 2px); }
+  80%       { transform: translate(2px, -2px); }
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+/* ===== UTILITY CLASSES ===== */
+
+.animate-fadeIn  { animation: fadeIn  0.25s ease-out; }
+.animate-slideUp { animation: slideUp 0.5s  ease-out; }
+.animate-scaleIn { animation: scaleIn 0.3s  ease-out; }
+
+/* ===== SCROLLBAR - Clean White Style ===== */
+::-webkit-scrollbar       { width: 8px; }
+::-webkit-scrollbar-track { @apply bg-light-200; }
+::-webkit-scrollbar-thumb { @apply bg-dark-600; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { @apply bg-sneaker-orange; }
+
+/* ===== SELECTION ===== */
+::selection      { @apply bg-sneaker-orange text-white; }
+::-moz-selection { @apply bg-sneaker-orange text-white; }
+
+/* ===== BG NOISE (lighter, subtle) ===== */
+.bg-noise-subtle {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+}

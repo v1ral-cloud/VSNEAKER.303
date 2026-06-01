@@ -1,0 +1,84 @@
+package com.d4k.ecommerce.modules.cart.mapper;
+
+import com.d4k.ecommerce.modules.cart.dto.response.CartItemResponse;
+import com.d4k.ecommerce.modules.cart.dto.response.CartResponse;
+import com.d4k.ecommerce.modules.cart.entity.Cart;
+import com.d4k.ecommerce.modules.cart.entity.CartItem;
+import org.springframework.stereotype.Component;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * Cart Mapper
+ * Convert giữa Entity và DTO
+ */
+@Component
+public class CartMapper {
+    
+    /**
+     * Convert CartItem entity sang CartItemResponse
+     */
+    public CartItemResponse toCartItemResponse(CartItem cartItem) {
+        if (cartItem == null || cartItem.getProduct() == null) {
+            return null;
+        }
+        
+        BigDecimal originalPrice = cartItem.getProduct().getPrice();
+        BigDecimal price = originalPrice;
+        
+        if (Boolean.TRUE.equals(cartItem.getProduct().getIsSale()) && cartItem.getProduct().getSaleDiscountPercentage() != null) {
+            BigDecimal percentage = BigDecimal.valueOf(cartItem.getProduct().getSaleDiscountPercentage());
+            BigDecimal discountAmount = originalPrice.multiply(percentage).divide(BigDecimal.valueOf(100), java.math.RoundingMode.HALF_UP);
+            price = originalPrice.subtract(discountAmount);
+        }
+        
+        Integer quantity = cartItem.getQuantity();
+        BigDecimal subtotal = price.multiply(BigDecimal.valueOf(quantity));
+        
+        return CartItemResponse.builder()
+                .id(cartItem.getId())
+                .productId(cartItem.getProduct().getId())
+                .productName(cartItem.getProduct().getName())
+                .productImageUrl(cartItem.getProduct().getImageUrl())
+                .productPrice(price)
+                .originalPrice(originalPrice)
+                .isSale(cartItem.getProduct().getIsSale())
+                .saleDiscountPercentage(cartItem.getProduct().getSaleDiscountPercentage())
+                .quantity(quantity)
+                .subtotal(subtotal)
+                .stock(cartItem.getProduct().getTotalStock())
+                .size(cartItem.getSize())
+                .color(cartItem.getColor())
+                .build();
+    }
+    
+    /**
+     * Convert Cart entity sang CartResponse
+     */
+    public CartResponse toCartResponse(Cart cart) {
+        if (cart == null) {
+            return null;
+        }
+        
+        // Map items
+        List<CartItemResponse> itemResponses = cart.getItems().stream()
+                .map(this::toCartItemResponse)
+                .collect(Collectors.toList());
+        
+        // Calculate totals
+        int totalItems = itemResponses.size();
+        BigDecimal totalAmount = itemResponses.stream()
+                .map(CartItemResponse::getSubtotal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        
+        return CartResponse.builder()
+                .id(cart.getId())
+                .userId(cart.getUser() != null ? cart.getUser().getId() : null)
+                .items(itemResponses)
+                .totalItems(totalItems)
+                .totalAmount(totalAmount)
+                .build();
+    }
+}
